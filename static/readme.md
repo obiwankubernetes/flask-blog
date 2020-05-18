@@ -1,0 +1,1 @@
+css templates for static design
