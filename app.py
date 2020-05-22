@@ -20,7 +20,7 @@ def post():
 # 4th route
 @app.route('/contact')
 def add():
-    return render_template('add.html')
+    return render_template('contact.html')
 
 # code to run app
 if __name__ == '__main__':
