@@ -32,6 +32,7 @@ class Blogpost(db.Model):
 # first route for home page and show user template index.html when goes to this url
 @app.route('/')
 def index():
+    posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
     return render_template('index.html')
 
 # 2nd route for about
@@ -43,15 +44,7 @@ def about():
 @app.route('/post/<int:post_id>')
 def post(post_id):
     post = Blogpost.query.filter_by(id=post_id).one()
-
-    date_posted = post.date_posted.strftime('%B %d, %Y')
-
-    return render_template('post.html', post=post, date_posted=date_posted)
-
-# 4th route
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+    return render_template('post.html', post=post)
 
 # 5th route
 @app.route('/add')
@@ -59,7 +52,7 @@ def add():
     return render_template('add.html')
 
 # 6th route
-@app.route('/addpost', methods=['POST'])
+@app.route('/addpost', methods = ['POST'])
 def addpost():
     title = request.form['title']
     subtitle = request.form['subtitle']
