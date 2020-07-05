@@ -33,7 +33,7 @@ class Blogpost(db.Model):
 @app.route('/')
 def index():
     posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
-    return render_template('index.html')
+    return render_template('index.html', posts=posts)
 
 # 2nd route for about
 @app.route('/about')
